@@ -12,14 +12,14 @@
             {% for teachers in data %}
             <div class="card text-center">
                 <div class="card-header">
-                    {{teachers.name}}
+                    {{teachers[0]}}
                 </div>
                 <center>
-                    <img class="card-img-top" src="{{teachers.image}}" alt="Card image cap" style = "width:400px">
+                    <img class="card-img-top" src="{{teachers[2]}}" alt="Card image cap" style = "width:400px">
                 </center>   
                 <div class="card-body">
-                    <h5 class="card-title">{{teachers.email}}</h5>
-                    <a href="{{teachers.msupages}}" class="btn btn-primary">Go to MSU Profile Pages</a>
+                    <h5 class="card-title">{{teachers[1]}}</h5>
+                    <a href="{{teachers[3]}}" class="btn btn-primary">Go to MSU Profile Pages</a>
                 </div>
                 <div class="card-footer text-muted">
                 </div>
