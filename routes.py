@@ -60,7 +60,7 @@ def login():
 
 		#Get user by email
 
-		result = cur.execute("SELECT * FROM Login WHERE Email = %s", [email])
+		result = cur.execute("SELECT * FROM login WHERE Email = %s", [email])
 
 		if result > 0:
 			#Get stored hash
@@ -102,12 +102,12 @@ def register():
 
 		#create cursor
 		cur = mysql.connection.cursor()
-		cur.execute("INSERT INTO Registration(FirstName, LastName, Email, Password, EmpType) VALUES(%s, %s, %s, %s, 'C')", (FirstName, LastName, email, password))
+		cur.execute("INSERT INTO registration(FirstName, LastName, Email, Password, EmpType) VALUES(%s, %s, %s, %s, 'C')", (FirstName, LastName, email, password))
 
 		#commit to DB
 		mysql.connection.commit()
 
-		cur.execute("INSERT INTO Login(Email, Password, EmpType) VALUES(%s, %s, 'C')", (email, password))
+		cur.execute("INSERT INTO login(Email, Password, EmpType) VALUES(%s, %s, 'C')", (email, password))
 
 		#commit to DB
 		mysql.connection.commit()
@@ -138,7 +138,7 @@ def questions():
 			today = datetime.date.today()
 			#making a cursor for sql query
 			cur = mysql.connection.cursor()
-			cur.execute("INSERT INTO Questions(question, Email, Date) VALUES(%s, %s, %s)", (userQuestion, session['email'], today))
+			cur.execute("INSERT INTO questions(question, Email, Date) VALUES(%s, %s, %s)", (userQuestion, session['email'], today))
 
 			#commit to db
 			mysql.connection.commit()
@@ -154,7 +154,7 @@ def questions():
 			ID = request.form['questionID']
 			cur = mysql.connection.cursor()
 
-			result = cur.execute("UPDATE Questions SET answer = %s WHERE ID = %s", (textAnswer, ID))
+			result = cur.execute("UPDATE questions SET answer = %s WHERE ID = %s", (textAnswer, ID))
 
 			mysql.connection.commit()
 
@@ -165,7 +165,7 @@ def questions():
 			ID = request.form['questionIDDelete']
 			cur = mysql.connection.cursor()
 			app.logger.info(ID)
-			result = cur.execute("DELETE FROM Questions WHERE ID = %s", (ID,))
+			result = cur.execute("DELETE FROM questions WHERE ID = %s", (ID,))
 
 			mysql.connection.commit()
 
@@ -173,7 +173,7 @@ def questions():
 			app.logger.info("You have successfully deleted a question")
 	cur = mysql.connection.cursor()
 
-	result = cur.execute("SELECT * FROM Questions ORDER BY ID DESC")
+	result = cur.execute("SELECT * FROM questions ORDER BY ID DESC")
 	questions = cur.fetchall()
 
 	if result > 0:
@@ -187,7 +187,7 @@ def questions():
 def teachers():
 	cur = mysql.connection.cursor()
 
-	result = cur.execute("SELECT * FROM Teachers")
+	result = cur.execute("SELECT * FROM teachers")
 	data = cur.fetchall()
 
 	if result > 0:
@@ -203,7 +203,7 @@ def users():
 		if 'deleteUser' in request.form:
 			user = request.form['nameUser']
 			cur = mysql.connection.cursor()
-			result = cur.execute("DELETE FROM Registration WHERE Email = %s", (user,))
+			result = cur.execute("DELETE FROM registration WHERE Email = %s", (user,))
 
 			mysql.connection.commit()
 
@@ -211,7 +211,7 @@ def users():
 			app.logger.info("You have successfully deleted a question")
 	cur = mysql.connection.cursor()
 
-	result = cur.execute("SELECT * FROM Registration")
+	result = cur.execute("SELECT * FROM registration")
 	data = cur.fetchall()
 	if result > 0:
 		return render_template('users.html', data = data)
