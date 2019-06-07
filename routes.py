@@ -5,7 +5,7 @@ from passlib.hash import sha256_crypt
 import datetime
 from flask_socketio import SocketIO
 app = Flask(__name__)
-
+app.secret_key= "secretstuff"
 #config mysql
 # mysql://bc980892c23eac:1c6985af@us-cdbr-iron-east-02.cleardb.net/heroku_66591423b270015?reconnect=true
 app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-02.cleardb.net'
@@ -231,6 +231,4 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
 
 #main method
 if __name__ == "__main__":
-	app.secret_key= "secretstuff"
-	# app.run(debug=True)
 	socketio.run(app, debug=True)
