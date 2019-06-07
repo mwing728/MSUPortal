@@ -12,7 +12,7 @@ app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-02.cleardb.net'
 app.config['MYSQL_USER'] = 'bc980892c23eac'
 app.config['MYSQL_PASSWORD'] = '1c6985af'
 app.config['MYSQL_DB'] = 'heroku_66591423b270015'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+# app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 socketio = SocketIO(app)
 #init MySQL
 mysql = MySQL(app)
