@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+            {% if session['emptype'] == 'C' %}
+                {% include 'includes/navbar.html'%}
+            {% else %}
+                {% include 'includes/navbar_admin.html' %}
+            {%endif%}
+    </head>
+    <body>
+            {% for teachers in data %}
+            <div class="card text-center">
+                <div class="card-header">
+                    {{teachers.name}}
+                </div>
+                <center>
+                    <img class="card-img-top" src="{{teachers.image}}" alt="Card image cap" style = "width:400px">
+                </center>   
+                <div class="card-body">
+                    <h5 class="card-title">{{teachers.email}}</h5>
+                    <a href="{{teachers.msupages}}" class="btn btn-primary">Go to MSU Profile Pages</a>
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+            {% endfor %}
+    </body>
+</html>

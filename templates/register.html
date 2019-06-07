@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include 'includes/messages.html' %}
+      <title>MSU Portal System</title>  
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <style>
+          
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: black;
+            }
+            .registerBox{
+                padding: 200px;
+                background-color: white;
+            }
+            input[type=text], input[type=password], input[type=email], input[type=email] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+            h1{
+                color: lightgreen
+            }
+            h2{
+                color: lightgreen
+            }
+            .registerButton {
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                opacity: 0.9;
+            }
+
+            .registerButton:hover {
+                opacity: 1; 
+            }
+            .signin {
+                background-color: #f1f1f1;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <form method = "POST" action ="">
+                <div class = "registerBox">
+                    {% from "includes/formhelper.html" import render_field %}
+                    <h2>Please Register if you do not have an account with us</h2>
+                    <div class = "form-group">
+                        {{render_field(form.FirstName, class_ = "form-control")}}
+                    </div>
+                    <div class = "form-group">
+                            {{render_field(form.LastName, class_ = "form-control")}}
+                    </div>
+                    <div class = "form-group">
+                            {{render_field(form.Email, class_ = "form-control")}}
+                    </div>
+                    <div class = "form-group">
+                            {{render_field(form.password, class_ = "form-control")}}
+                    </div>
+                    <div class = "form-group">
+                            {{render_field(form.confirm, class_ = "form-control")}}
+                    </div>
+                    <button type = "submit" class = "btn btn-primary">Submit Registration</button>
+                    <div class="container signin">
+                        <p>Already have an account? <a href="{{url_for('login')}}">Sign in</a>.</p>
+                    </div>
+                </div>
+            </form>
+            
+        </center>
+    </body>
+</html>
+    

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+    </head>
+    <body>
+            {% include 'includes/messages.html' %}
+            {% if session['emptype'] == 'C' %}
+                {% include 'includes/navbar.html'%}
+            {% else %}
+                {% include 'includes/navbar_admin.html' %}
+            {%endif%}
+        <h1>Hello there {{session.email}}</h1>
+        <h2>Welcome to the MSU Portal System</h2>
+        <h3>You can ask questions, look up teachers, and chat with people online!</h3>
+    </body>
+</html>

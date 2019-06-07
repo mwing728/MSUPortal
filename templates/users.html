@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+            {% if session['emptype'] == 'C' %}
+                {% include 'includes/navbar.html'%}
+            {% else %}
+                {% include 'includes/navbar_admin.html' %}
+            {%endif%}
+    </head>
+    <body>
+            <h3>Delete User Profiles Here</h3>
+            <form action = "" method = "POST">
+                <select name = "nameUser">
+                    {% for users in data %}
+                        <option value = "{{users.Email}}" id = "{{users.Email}}" name = "{{users.Email}}">{{users.Email}}</option>
+                    {% endfor %}
+                </select>
+                <input type = "submit" class = "btn btn-danger" name = "deleteUser" value = "Delete">
+            </form>
+            {% for users in data %}
+            <div class="card text-center">
+                    <div class="card-header">
+                        {{users.FirstName}} {{users.LastName}}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{users.Email}}</h5>
+                        <a href="#" class="btn btn-primary">Go to MSU Profile Pages</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                    </div>
+                </div>
+            {% endfor %}
+    </body>
+</html>

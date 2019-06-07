@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+            {% if session['emptype'] == 'C' %}
+                {% include 'includes/navbar.html'%}
+            {% else %}
+                {% include 'includes/navbar_admin.html' %}
+            {%endif%}
+            <style>
+                /* CSS Document */
+                
+                form, p, span {
+                    margin:0;
+                    padding:0; }
+                
+                input { font:12px arial; }
+                
+                a {
+                    color:#0000FF;
+                    text-decoration:none; }
+                
+                    a:hover { text-decoration:underline; }
+                
+                #wrapper, #loginform {
+                    margin:0 auto;
+                    padding-bottom:25px;
+                    background:#EBF4FB;
+                    width:504px;
+                    border:1px solid #ACD8F0; }
+                
+                .message_holder {
+                    text-align:left;
+                    margin:0 auto;
+                    margin-bottom:25px;
+                    padding:10px;
+                    background:#fff;
+                    height:270px;
+                    width:430px;
+                    border:1px solid #ACD8F0;
+                    overflow:auto; }
+                
+                #usermsg {
+                    width:395px;
+                    border:1px solid #ACD8F0; }
+                
+                #submit { width: 60px; }
+                
+                .error { color: #ff0000; }
+                
+                #menu { padding:12.5px 25px 12.5px 25px; }
+                
+                #welcome { float:left; }
+                
+                #logout { float:right; }
+                
+                .msgln { margin:0 0 2px 0; }
+            </style>   
+    </head>
+
+    <body>
+            
+        <div id="wrapper">
+            <div id="menu">
+                <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
+                <p id="welcome">Welcome, <b></b></p>
+                <p id="logout"><a id="exit" href="{{url_for('home')}}">Exit Chat</a></p>
+                <div style="clear:both"></div>
+            </div>
+                
+            <div class="message_holder"></div>
+                
+            <form name="" action="" method = "POST">
+                <input type = "text" class = "username" placeholder = "Email"/>
+                <input class="usermsg" type="text" id="usermsg" size="63" />
+                <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+            </form>
+        </div>
+        <script type="text/javascript">
+            var socket = io.connect('http://' + document.domain + ':' + location.port);
+            socket.on( 'connect', function() {
+              socket.emit( 'my event', {
+                data: 'User Connected'
+              } )
+              var form = $( 'form' ).on( 'submit', function( e ) {
+                e.preventDefault()
+                let user_name = $( 'input.username' ).val()
+                let user_input = $( 'input.usermsg' ).val()
+                socket.emit( 'my event', {
+                  user_name : user_name,
+                  message : user_input
+                } )
+                $( 'input.usermsg' ).val( '' ).focus()
+              } )
+            } )
+            socket.on( 'my response', function( msg ) {
+              console.log( msg )
+              if( typeof msg.user_name !== 'undefined' ) {
+                $( 'h3' ).remove()
+                $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
+              }
+            })
+          </script>
+    </body>
+</html>

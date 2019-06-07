@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>MSU Portal System</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: black;
+            }
+            .registerBox{
+                padding: 200px;
+                background-color: white;
+            }
+            input[type=text], input[type=password], input[type=email], input[type=email] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+            h1{
+                color: lightgreen
+            }
+            h2{
+                color: lightgreen
+            }
+            h4{
+                color: lightgreen
+            }
+            .registerButton {
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                opacity: 0.9;
+            }
+
+            .registerButton:hover {
+                opacity: 1; 
+            }
+            .signin {
+                background-color: #f1f1f1;
+                text-align: center;
+            }
+            button{
+                background-color:green;
+            }
+        </style>
+
+    </head>
+    <body>
+        <center>
+                <h1>Welcome to MSU Student Portal</h1>
+                <h2>Please Register here</h2>
+                <h4>Chat with others and Ask Questions!</h4>
+                <button><a href="{{url_for('register')}}">Register</a></button>
+
+                <h2>If you already have an account please click the button to login</h2>
+                <button><a href = "{{url_for('login')}}">Login</a></button>
+        </center>
+    </body>
+</html>

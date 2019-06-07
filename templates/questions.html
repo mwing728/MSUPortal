@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+            {% if session['emptype'] == 'C' %}
+                {% include 'includes/navbar.html'%}
+            {% else %}
+                {% include 'includes/navbar_admin.html' %}
+            {%endif%}
+        <script type = "text/javascript">{
+            function questionFormTrigger(){
+                document.getElementById('questionForm').submit();
+            }
+            function answerFormTrigger(){
+                document.getElementById('answerForm').submit();
+            }
+            function deleteFormTrigger(){
+                document.getElementById('answerForm').submit();
+            }
+        }
+        </script>
+
+        <style>
+            form{
+                display:inline-block
+            }
+        </style>
+   </head>
+    <body>
+        <div id = "navbar">
+            <form id = 'questionForm' action = "", method = "POST">
+                    <strong><span>Input a Question Here</span></strong>
+                    <input type = "text" name = "questionInp">
+                    <input type ="submit" class = "btn btn-primary" name = 'Submit_Question' value = 'Submit Question' onclick = "questionFormTrigger()">
+                </form>
+            <form id = 'answerForm' action = "", method ="POST">
+                <p>Input Answer Here</p><textarea rows="1" cols="50" id="txt"  name = 'txt'></textarea>
+                <p>Input Question ID</p><input type = "text" name = 'questionID' id = "questionID">
+                <input type="submit" class = "btn btn-primary" id="btn" name = 'Submit_Answer' value = 'Submit  Answer' onclick = "answerFormTrigger()">
+            </form>
+            {% if session['emptype'] == 'A' %}
+                {% include 'questionsAdmin.html' %}
+            {%endif%}
+        </div>
+        <br>
+        <br>
+        <hr>
+        {% for question in questions %}
+        <div class="card">
+                <div class="card-header">
+                    {{question.Date}}
+                </div>
+                <div class = "card-body">
+                    <h5 class="card-subtitle mb-2 text-muted">{{question.Email}}</h5>
+                    <p class="card-text"><strong>Question:</strong> {{question.question}}</p>
+                    <p id = 'q-id'><strong>ID: </strong>{{question.ID}}</p>
+                    <hr>
+                    <p class="card-text"><strong>Answer: </strong>{{question.answer}}</p>
+                </div>
+        </div>
+        {% endfor %}
+    </body>
+    <!-- <script type= "text/javascript" src = "{{url_for('static', filename = 'popupTextBox.js')}}"></script> -->
+    <script type= "text/javascript" src = "{{url_for('static', filename = 'answerQuestion.js')}}"></script>
+</html>
