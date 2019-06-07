@@ -48,14 +48,14 @@
         {% for question in questions %}
         <div class="card">
                 <div class="card-header">
-                    {{question.Date}}
+                    {{question[2]}}
                 </div>
                 <div class = "card-body">
-                    <h5 class="card-subtitle mb-2 text-muted">{{question.Email}}</h5>
-                    <p class="card-text"><strong>Question:</strong> {{question.question}}</p>
-                    <p id = 'q-id'><strong>ID: </strong>{{question.ID}}</p>
+                    <h5 class="card-subtitle mb-2 text-muted">{{question[1]}}</h5>
+                    <p class="card-text"><strong>Question:</strong> {{question[0]}}</p>
+                    <p id = 'q-id'><strong>ID: </strong>{{question[3]}}</p>
                     <hr>
-                    <p class="card-text"><strong>Answer: </strong>{{question.answer}}</p>
+                    <p class="card-text"><strong>Answer: </strong>{{question[4]}}</p>
                 </div>
         </div>
         {% endfor %}
