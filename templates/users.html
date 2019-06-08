@@ -13,7 +13,7 @@
             <form action = "" method = "POST">
                 <select name = "nameUser">
                     {% for users in data %}
-                        <option value = "{{users.Email}}" id = "{{users.Email}}" name = "{{users.Email}}">{{users.Email}}</option>
+                        <option value = "{{users[2]}}" id = "{{users[2]}}" name = "{{users[2]}}">{{users[2]}}</option>
                     {% endfor %}
                 </select>
                 <input type = "submit" class = "btn btn-danger" name = "deleteUser" value = "Delete">
@@ -21,10 +21,10 @@
             {% for users in data %}
             <div class="card text-center">
                     <div class="card-header">
-                        {{users.FirstName}} {{users.LastName}}
+                        {{users[0]}} {{users[1]}}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{users.Email}}</h5>
+                        <h5 class="card-title">{{users[2]}}</h5>
                         <a href="#" class="btn btn-primary">Go to MSU Profile Pages</a>
                     </div>
                     <div class="card-footer text-muted">
